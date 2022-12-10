@@ -38,7 +38,7 @@ export default function PostsLists(props) {
 
             {
                 props.posts.map(function(post){
-                    return <PostItem title={post.title} body={post.body} post={post}/>
+                    return <PostItem  title={post.title} body={post.body} post={post}/>
                 })
             }
 

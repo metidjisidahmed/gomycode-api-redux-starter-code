@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import PostsLists from "./SubCompounents/PostsLists";
 
 
-export default function GetPost() {
-
+export default function GetPost(props) {
+    const siblingInputRef = useRef()
     const [posts, setPosts] = useState([])
 
     useEffect(function () {
@@ -29,11 +29,17 @@ export default function GetPost() {
 
     }, [])
 
+    function clickingSubmitButton(){
+        props.messageSetter(siblingInputRef.current.value)
+    }
 
     return (
         <>
             <div> I have {posts.length} posts in total</div>
+            <input ref={siblingInputRef} type={"text"} />
+            <button onClick={clickingSubmitButton} >Submit</button>
             <PostsLists posts={posts} />
+
         </>
 
     )
